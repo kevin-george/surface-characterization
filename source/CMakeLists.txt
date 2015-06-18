@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project(Camera)
+find_package(OpenCV REQUIRED)
+add_executable(AccessCamera access_camera.cpp)
+target_link_libraries(AccessCamera ${OpenCV_LIBS})
