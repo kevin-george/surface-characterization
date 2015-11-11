@@ -1,0 +1,40 @@
+#Install dependencies
+sudo apt-get install libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev
+sudo apt-get install libgtk2.0-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libatlas-base-dev gfortran
+
+#Install pip
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+
+#Use a virtualenv to avoid depency conflicts with other python installtions
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+source ~/.bashrc
+mkvirtualenv cv
+
+#Install numpy within this virtualenv
+pip install numpy
+
+#Get latest source code for opencv & opencv_contrib
+git clone https://github.com/Itseez/opencv.git
+git clone https://github.com/Itseez/opencv_contrib.git
+
+#Need to build x264, ffmpeg and v4l to enable pic support(for ARMv7 architecture)
+wget ftp://ftp.videolan.org/pub/videolan/x264/snapshots/last_stable_x264.tar.bz2
+./configure --enable-shared –-enable-pic
+make
+sudo make install
+
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+	-D CMAKE_INSTALL_PREFIX=/usr/local \
+	-D INSTALL_C_EXAMPLES=ON \
+	-D INSTALL_PYTHON_EXAMPLES=ON \
+	-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+	-D BUILD_EXAMPLES=ON ..
+	
+make -j4
+sudo make install
