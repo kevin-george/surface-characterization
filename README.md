@@ -1,6 +1,7 @@
-# surface-characterization
+# Characterizing Surfaces
 This repo contains documentation &amp; code for my work with computer vision
-
+  * Stereo Vision
+  * Local Binary Patterns
 
 #Directory Structure
 /source  
