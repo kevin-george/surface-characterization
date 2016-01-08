@@ -13,3 +13,9 @@ This repo contains documentation &amp; code for my work with computer vision
 &nbsp;&nbsp;&nbsp;/training_images/stone  
 &nbsp;&nbsp;&nbsp;/training_images/pebbles  
 /testing_images  
+
+# Dependencies
+  * opencv 3.0
+  * numpy
+  * scikit-learn
+  * scikit-image
