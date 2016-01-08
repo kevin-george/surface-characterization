@@ -23,10 +23,10 @@ This repo contains documentation &amp; code for my work with computer vision
 #Stereo Vision
 
 ##Directory Structure
-/source
-&nbsp;&nbsp;&nbsp;/source/generate_disparity_map.py
-&nbsp;&nbsp;&nbsp;/source/sift_matching.py
-/images
+/source  
+&nbsp;&nbsp;&nbsp;/source/generate_disparity_map.py  
+&nbsp;&nbsp;&nbsp;/source/sift_matching.py  
+/images  
 
 ## Dependencies
   * opencv 3.0
