@@ -3,7 +3,6 @@ from classifier import Classifier
 import os
 import cv2
 from sklearn.cross_validation import train_test_split
-import matplotlib.pyplot as plt
 
 #Caputuring the Image
 #---To be done---
@@ -31,19 +30,14 @@ def run_iteration(iteration, hash_map):
         hist = lbp.compute(gray)
         hash_map[imagePath] = hist
 
-      print str(iteration) + " DEBUG(Training): Computed LBP Histogram for " + imagePath
-
-      #Plotting histogram if needed
-      #plt.bar(bin_edges[:-1], hist, width = 1)
-      #plt.xlim(min(bin_edges), max(bin_edges))
-      #plt.show()
-
       #Extract the label from the image path, then update the label and data lists
       labels.append(imagePath.split("/")[-2])
       data.append(hist)
 
+      print str(iteration) + " DEBUG(Training): Computed LBP Histogram for " + imagePath
+
     #Train classifier
-    classifier = Classifier("SVM")
+    classifier = Classifier("Chi-Squared")
     print "\n\n" + str(iteration) + " DEBUG: Training Classifier"
     classifier.train(data, labels)
     print "\n\n" + str(iteration) + " DEBUG: Trained Classifier\n\n"
@@ -71,7 +65,7 @@ def run_iteration(iteration, hash_map):
     counter = 0
     print "\n\n" + str(iteration) + " DEBUG: Printing predictions\n\n"
     for index, prediction in enumerate(predictions):
-        print "Name -> " + testing[index] + " Actual -> " + labels[index] + " Prediction -> " + prediction
+        print "Name -> " + testing[index] + "\nActual -> " + labels[index] + " Prediction -> " + prediction
         if labels[index] == prediction:
             counter = counter + 1
 

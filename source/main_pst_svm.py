@@ -1,15 +1,11 @@
-from local_binary_patterns import LocalBinaryPatterns
+from phase_stretch_transform import PhaseStretchTransform
 from classifier import Classifier
 import os
 import cv2
 from sklearn.cross_validation import train_test_split
-import matplotlib.pyplot as plt
-
-#Caputuring the Image
-#---To be done---
 
 def run_iteration(iteration, hash_map):
-    lbp = LocalBinaryPatterns(24, 8)
+    pst = PhaseStretchTransform()
     data = []
     labels = []
 
@@ -28,22 +24,17 @@ def run_iteration(iteration, hash_map):
       if imagePath in hash_map:
         hist = hash_map[imagePath]
       else:
-        hist = lbp.compute(gray)
+        hist = pst.compute(gray)
         hash_map[imagePath] = hist
 
-      print str(iteration) + " DEBUG(Training): Computed LBP Histogram for " + imagePath
-
-      #Plotting histogram if needed
-      #plt.bar(bin_edges[:-1], hist, width = 1)
-      #plt.xlim(min(bin_edges), max(bin_edges))
-      #plt.show()
+      print str(iteration) + " DEBUG(Training): Computed PST Histogram for " + imagePath
 
       #Extract the label from the image path, then update the label and data lists
       labels.append(imagePath.split("/")[-2])
       data.append(hist)
 
     #Train classifier
-    classifier = Classifier("SVM")
+    classifier = Classifier("Chi-Squared")
     print "\n\n" + str(iteration) + " DEBUG: Training Classifier"
     classifier.train(data, labels)
     print "\n\n" + str(iteration) + " DEBUG: Trained Classifier\n\n"
@@ -58,10 +49,10 @@ def run_iteration(iteration, hash_map):
       if imagePath in hash_map:
         hist = hash_map[imagePath]
       else:
-        hist = lbp.compute(gray)
+        hist = pst.compute(gray)
         hash_map[imagePath] = hist
 
-      print str(iteration) + " DEBUG(Testing): Computed LBP Histogram for " + imagePath
+      print str(iteration) + " DEBUG(Testing): Computed PST Histogram for " + imagePath
 
       data.append(hist)
       labels.append(imagePath.split("/")[-2])

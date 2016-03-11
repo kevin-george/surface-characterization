@@ -8,7 +8,7 @@ class Classifier:
 
   def train(self, data, labels):
     if self.ctype == "SVM":
-      self.model = LinearSVC(C = 1.0)
+      self.model = LinearSVC()
       self.model.fit(data, labels)
     elif self.ctype == "Decision":
       print "Unsupported"
