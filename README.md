@@ -8,10 +8,8 @@ This repo contains documentation &amp; code for my work with computer vision
 &nbsp;&nbsp;&nbsp;/source/local_binary_pattern.py  
 &nbsp;&nbsp;&nbsp;/source/paths.py  
 /training_images  
-&nbsp;&nbsp;&nbsp;/training_images/carpet  
-&nbsp;&nbsp;&nbsp;/training_images/brick  
-&nbsp;&nbsp;&nbsp;/training_images/stone  
-&nbsp;&nbsp;&nbsp;/training_images/pebbles  
+&nbsp;&nbsp;&nbsp;/training_images/unclimbable  
+&nbsp;&nbsp;&nbsp;/training_images/climbable
 /testing_images  
 
 ## Dependencies
@@ -20,15 +18,10 @@ This repo contains documentation &amp; code for my work with computer vision
   * scikit-learn
   * scikit-image
 
-#Stereo Vision
+## Usage
+1. Modify run_experiments.py to one of these options
+  a. main_lbp_svm
+  b. main_lbp_chisquared
+  c. main_pst_svm
+2. Run command -> python run_experiments.py
 
-##Directory Structure
-/source  
-&nbsp;&nbsp;&nbsp;/source/generate_disparity_map.py  
-&nbsp;&nbsp;&nbsp;/source/sift_matching.py  
-/images  
-
-## Dependencies
-  * opencv 3.0
-  * numpy
-  * matplotlib
